@@ -5,9 +5,13 @@ export const useValidate = ({ firstPassword = "", secondPassword = "" }) => {
   const [hasNumber, setHasNumber] = useState(null);
   const [upperCase, setUpperCase] = useState(null);
   const [lowerCase, setLowerCase] = useState(null);
+  const [specialChar, setSpecialChar] = useState(null);
   const [match, setMatch] = useState(null);
 
   useEffect(() => {
+    setSpecialChar(
+      /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(firstPassword)
+    );
     setValidLength(firstPassword.length >= 8 ? true : false);
     setHasNumber(/\d/.test(firstPassword));
     setUpperCase(firstPassword.toLowerCase() !== firstPassword);
@@ -15,5 +19,5 @@ export const useValidate = ({ firstPassword = "", secondPassword = "" }) => {
     setMatch(firstPassword && firstPassword === secondPassword);
   }, [firstPassword, secondPassword]);
 
-  return [validLength, hasNumber, upperCase, lowerCase, match];
+  return [validLength, hasNumber, upperCase, lowerCase, match, specialChar];
 };
