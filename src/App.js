@@ -12,7 +12,14 @@ function App() {
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
 
-  const [validLength, hasNumber, upperCase, lowerCase, match] = useValidate({
+  const [
+    validLength,
+    hasNumber,
+    upperCase,
+    lowerCase,
+    match,
+    specialChar,
+  ] = useValidate({
     firstPassword: firstPassword,
     secondPassword: secondPassword,
   });
@@ -48,6 +55,10 @@ function App() {
             LowerCase: {lowerCase ? <span>True</span> : <span>False</span>}
           </li>
           <li>Match: {match ? <span>True</span> : <span>False</span>}</li>
+          <li>
+            Special Character:{" "}
+            {specialChar ? <span>True</span> : <span>False</span>}
+          </li>
         </ul>
       </div>
     </div>
